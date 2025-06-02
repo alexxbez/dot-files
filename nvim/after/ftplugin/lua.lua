@@ -1,0 +1,2 @@
+-- the name lua.lua signals that ONLY in lua type files this things are run
+-- if we wanted to do it in cpp it would be cpp.lua, and then change the behavior
