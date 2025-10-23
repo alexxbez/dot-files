@@ -12,6 +12,8 @@ return {
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
         preset = 'super-tab',
+        ['<C-j>'] = { 'select_next', 'fallback' },
+        ['<C-k>'] = { 'select_prev', 'fallback' },
       },
 
       appearance = {

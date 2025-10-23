@@ -19,16 +19,16 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       require('lspconfig').lua_ls.setup { capabilities = capabilities }
       require 'lspconfig'.clangd.setup { capabilities = capabilities }
-      require 'lspconfig'.rust_analyzer.setup {
-        cmd = { "/Users/alexx/.rust_a/rust-analyzer" },
+      require 'lspconfig'.rust_analyzer.setup { capabilities = capabilities }
+      require 'lspconfig'.ts_ls.setup { capabilities = capabilities }
+      require('lspconfig')['tinymist'].setup {
         settings = {
-          ['rust-analyzer'] = {
-            diagnostics = {
-              enable = true,
-            }
-          }
+          formatterMode = "typstyle",
+          exportPdf = "onType",
+          semanticTokens = "disable"
         }
       }
+      require('lspconfig')['gopls'].setup { capabilities = capabilities }
       require 'lspconfig'.racket_langserver.setup {
         cmd = { 'racket-langserver' },
         capabilities = capabilities
@@ -39,11 +39,6 @@ return {
       }
       require 'lspconfig'.pyright.setup {
         capabilities = capabilities,
-        settings = {
-          python = {
-            pythonPath = "/Users/alexx/.pyenv/versions/3.13.2/bin/python"
-          }
-        },
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {

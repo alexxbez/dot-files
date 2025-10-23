@@ -1,7 +1,7 @@
 -- Import? lazy vim
 require('custom.lazy')
 
-vim.cmd.colorscheme "catppuccin"
+vim.cmd.colorscheme "gruvbox-material"
 
 -- Neovim options ----------------------------------------------------------------------------
 vim.opt.number = true
@@ -16,12 +16,14 @@ vim.opt.hidden = true             -- Allow switching buffers without saving
 vim.opt.wrap = false
 
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "text", "gitcommit" }, -- File types where wrapping is enabled
+  pattern = { "markdown", "text", "gitcommit", "org", "typ", "typst" }, -- File types where wrapping is enabled
   callback = function()
-    vim.opt_local.wrap = true                    -- Enable wrapping
-    vim.opt_local.linebreak = true               -- Wrap at word boundaries
+    vim.opt_local.wrap = true                                           -- Enable wrapping
+    vim.opt_local.linebreak = true                                      -- Wrap at word boundaries
   end,
 })
+
+vim.opt.tabstop = 2
 
 vim.opt.expandtab = true   -- Use spaces instead of tabs
 vim.opt.shiftwidth = 2
@@ -33,6 +35,14 @@ vim.opt.updatetime = 300   -- Faster completion and diagnostics updates
 vim.opt.signcolumn = "yes"
 
 vim.opt.mouse = 'a'
+
+-- Make bindings work with wrapped text
+vim.keymap.set('n', 'j', 'gj', { silent = true })
+vim.keymap.set('n', 'k', 'gk', { silent = true })
+vim.keymap.set('v', 'j', 'gj', { silent = true })
+vim.keymap.set('v', 'k', 'gk', { silent = true })
+vim.keymap.set('o', 'j', 'gj', { silent = true })
+vim.keymap.set('o', 'k', 'gk', { silent = true })
 ----------------------------------------------------------------------------------------------
 vim.o.timeoutlen = 1500
 
